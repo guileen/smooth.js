@@ -1,0 +1,20 @@
+{
+  "name": "smooth",
+  "version": "0.1.0",
+  "description": "Smooth, throttle, queue async function parallel execution with a limitation.",
+  "main": "smooth.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:guileen/smooth.js.git"
+  },
+  "keywords": [
+    "smooth",
+    "throttle",
+    "queue"
+  ],
+  "author": "guileen AT gmail.com",
+  "license": "BSD"
+}
