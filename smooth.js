@@ -1,7 +1,8 @@
-function smooth(fn, limit, maxQueueSize) {
+function smooth(fn, limit, maxQueueSize, timeout) {
 
   var queue = [];
   var running = 0;
+  timeout = timeout || 5000;
   if(!limit) {
     limit = 10;
   }
@@ -15,11 +16,24 @@ function smooth(fn, limit, maxQueueSize) {
     var self = task[0];
     var args = task[1];
     var callback = args[args.length - 1];
+    var alreadyCallback = false;
+    // replace last arguments callback
     args[args.length - 1] = function() {
+      if(alreadyCallback) return;
+      clearTimeout(timer);
       running --;
       callback.apply(null, Array.prototype.slice.call(arguments));
+      alreadyCallback = true;
       loadNext();
     };
+    // callback if not callback for a long time
+    var timer = setTimeout(function(){
+        if(alreadyCallback) return;
+        running --;
+        callback(new Error('smooth timeout, args:' + args));
+        alreadyCallback = true;
+        loadNext();
+    }, timeout);
     running ++;
     fn.apply(self, args);
   }
