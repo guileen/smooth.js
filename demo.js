@@ -14,7 +14,7 @@ Client.prototype.get = function(a, b, c, callback){
 
 var client = new Client('x');
 client.get = smooth(client.get);
-for(var i = 0; i < 1000; i++) {
+for(var i = 0; i < 100; i++) {
   client.get('a', 'b', i, function(x, y, z){
       console.log('return ', x, y, z);
   });

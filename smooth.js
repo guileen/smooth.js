@@ -12,6 +12,10 @@ function smooth(fn, limit, maxQueueSize, timeout) {
 
   function loadNext() {
     var task = queue.shift();
+    if(warned && queue.length < maxQueueSize) {
+      console.info('queue size is OK, fn: ' + fn);
+      warned = false;
+    }
     if(!task) return;
     var self = task[0];
     var args = task[1];
@@ -42,10 +46,13 @@ function smooth(fn, limit, maxQueueSize, timeout) {
     if(running < limit) loadNext();
   }
 
+  var warned = false;
+
   return function() {
     var args = Array.prototype.slice.call(arguments);
     queue.push([this, args]);
-    if(queue.size > maxQueueSize) {
+    if(!warned && queue.length > maxQueueSize) {
+      warned = true;
       console.warn('exceed max queue size, fn: ' + fn);
     }
     start();
