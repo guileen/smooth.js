@@ -59,8 +59,8 @@ function smooth(fn, limit, maxQueueSize, timeout) {
   }
 }
 
-var exports = module.exports = function(limit, max) {
-  return function(fn, _limit, _max){
-    return smooth(fn, _limit || limit, _max || max);
+var exports = module.exports = function(limit, max, timeout) {
+  return function(fn, _limit, _max, _timeout){
+    return smooth(fn, _limit || limit, _max || max, _timeout || timeout);
   }
 }
