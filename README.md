@@ -1,17 +1,18 @@
 Smooth.js
 ====
 
-module(limitation, max_queue)
+module(limitation, max_queue, timeout)
 ----
-* limitation default 10
+* limitation - default 10
 * max_queue if the queue size big than max_queue, will show an warn message.
+* timeout in ms - default 5000ms
 
 ```js
 var limit = 5;
 var smooth = require('smooth')(limit);
 ```
 
-smooth(fn, [limit, [max_queue]])
+smooth(fn, [limit, [max_queue, [timeout]]])
 ----
 
 smooth a function
