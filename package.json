@@ -1,6 +1,6 @@
 {
   "name": "smooth",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Smooth, throttle, queue async function parallel execution with a limitation.",
   "main": "smooth.js",
   "scripts": {
